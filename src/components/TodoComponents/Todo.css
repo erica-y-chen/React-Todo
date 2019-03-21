@@ -1,0 +1,103 @@
+.list{
+    margin: 0 auto; 
+    border-botoom: 2px solid rgb(235, 220, 168);
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #F8ECC2;
+    max-width: 500px;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: 100;
+    padding-left: 3rem;
+    /* padding-top: 0.5rem;
+    margin-top: -0.5rem; */
+    width: 100%; 
+}
+
+
+.task {
+    width: 100%;
+    height: 40px;
+    border-bottom: 2px solid rgb(142, 142, 255);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.task:hover .check{
+    visibility: visible;
+}
+
+.task:hover h3{
+    font-style: italic;
+    font-weight: 500;
+    color: grey;
+}
+
+.check{
+    position: absolute;
+    right: 0;
+    margin-right: 1.7rem;
+    visibility: hidden;
+}
+
+
+.checkbox {
+    height: 15px;
+    width: 15px;
+    background-color: rgb(255, 250, 231);
+    margin-right: 1.5rem;
+    border: 2px solid rgb(240, 213, 118);
+}
+
+.checkbox:hover {
+    height: 20px;
+    width: 20px;
+}
+
+.toggled{
+    visibility: visible; 
+}
+
+form{
+    padding: 1rem 0 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+}
+
+input{
+    height: 40px;
+    padding-left: 1rem;
+    width: 100%;
+    font-size: 1rem;
+    border: 2px solid rgb(196, 196, 255);
+}
+
+button{
+    height: 46px;
+    background-color: rgb(136, 191, 255);
+    justify-self: flex-end;
+    width: 10rem;
+    font-size: 0.8rem;
+}
+
+button:hover{ 
+    background-color: rgb(54, 146, 250);
+}
+
+.formStyle{
+    margin-top: 350px;
+    display: flex;
+    flex-direction: row;
+}
+
