@@ -100,13 +100,22 @@ class TodoForm extends React.Component {
         console.log(this.state.toggled);
     }
 
+    
+
     render() {
         const inputField = this.state.toggled; 
         console.log(inputField);
         let formComponent;
 
         if(inputField){
-            formComponent=<Form />;
+            formComponent=<Form 
+            task={this.state.task}
+            completed={this.state.completed}
+            CompletedTask={this.CompletedTask}
+            deleteCompleted={this.deleteCompleted}
+            handleChanges={this.handleChanges}
+            updateList={this.updateList}
+            />
         } else{
             formComponent=null; 
         }
