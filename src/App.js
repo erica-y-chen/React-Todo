@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import TodoForm from "./components/TodoComponents/TodoForm";
-import Key from "./components/TodoComponents/Key";
+import KeyList from "./components/TodoComponents/KeyList";
 
 const todo = [
   {
@@ -25,7 +25,8 @@ class App extends React.Component {
       todo,
       task: "",
       completed: false,
-      type: ""
+      type: "",
+      types: ["Work", "Home", "Chores"]
     };
   }
   handleChanges = event => {
@@ -75,6 +76,10 @@ class App extends React.Component {
       })
     });
   };
+
+  handleType = type => {
+    console.log(type);
+  };
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
@@ -83,7 +88,11 @@ class App extends React.Component {
       <div class="body">
         <div class="menu">
           <h1>My tasks</h1>
-          <Key todo={this.state.todo} />
+          <KeyList
+            todo={this.state.todo}
+            handleType={this.handleType}
+            types={this.state.types}
+          />
         </div>
         <div class="content">
           <TodoForm
