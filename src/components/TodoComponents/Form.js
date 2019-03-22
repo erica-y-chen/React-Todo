@@ -16,6 +16,8 @@ const Form = props => {
                 
                 />
                 <button onClick={props.updateList}>Add Task</button>
+                <button class="delete" onClick={props.deleteCompleted}>Delete Complete</button>
+
         </form>
         </div>
     );

@@ -4,17 +4,20 @@ import Task from './Task';
 import Form from './Form';
 
 
+
 const todo = [
     {
       task: 'Organize Garage',
       id: 1528817077286,
-      completed: false
+      completed: false,
+      type: 'Home',
     },
 
     {
       task: 'Bake Cookies',
       id: 1528817084358,
-      completed: false
+      completed: false,
+      type: 'Work',
     }
 ];
 
@@ -27,6 +30,7 @@ class TodoForm extends React.Component {
             todo,
             task: '',
             completed: false,
+            type: '', 
         };
     }
 
@@ -42,40 +46,77 @@ class TodoForm extends React.Component {
         const newTask = {
             task: this.state.task,
             completed: false,
+            id: (Math.random()),
         };
+        // console.log(newTask);
 
          this.setState({
             todo: [...this.state.todo, newTask]
         });
-        console.log(this.state.completed);
+        // console.log(this.state.completed);
     };
 
-    CompletedTask = (e) => {
-        // console.log("clicked");
-        // console.log(e.target.getAttribute('completed'));
-        console.log(e);
+    deleteCompleted = item => {
+        item.preventDefault();
+        const newList = this.state.todo.slice();
+        console.log(newList);
+        
+        const filtered = newList.filter(item => 
+            item.completed === false 
+            // console.log(item);
+            // console.log(item.completed);
+            // var index = newList.indexOf(item);
+            // console.log(index);
+            // if (item.completed === true) {
+            //     newList.splice(index, 1);
+            // }
 
-        let selectedTask =e.completed; 
-        console.log(e.completed);
-        selectedTask = !selectedTask; 
-        console.log(e.completed);
+            // return newList;
+            // console.log(newList);
+
+        )
+        console.log(filtered);
         
         this.setState({
-            this.completed: selectedTask,
+            todo: filtered, newList:""
+        });
+
+    //     let Completed = {task: this.state.task,};
+    //     console.log(Completed);
+        // Completed = Completed.filter((task) => {
+        //     console.log(this )
+        // })
+        // const completed = {
+        //     task: Completed.state.task,
+        // // }
+        // this.setState({
+
+        //     })
+        // })
+        // console.log(Completed);
+        // this.setState({
+        //     completed: this.state.todo.map(item=> {
+        //         if(item.completed===true) {
+        //             item.target.style.display = 'none';
+        //         }
+        //     })
+        // })
+    };
+
+    CompletedTask = (id) => {
+        console.log(id);
+        this.setState({ 
+            todo: this.state.todo.map(item => {
+            if(item.id === id) {
+                return{
+                    ...item,
+                    completed: !item.completed
+                };
+            }
+                return item;
         })
-        
-        // this.setState({
-        //     e.completed: !e.completed,
-        // })
-        // e.target.style.display = 'none';
-        // const selectedTask = e.target; 
-        // console.log(selectedTask);
-        // // this.state.completed = this.state.completed;
-        // console.log(selectedTask.completed);
-        // this.value = false; 
-        // this.setState({
-        //     [e.target.completed]: e.target.value, 
-        // })
+    });
+
         
         
     }
@@ -86,7 +127,7 @@ class TodoForm extends React.Component {
             <div className="todo">
                 <div className="list">
                 {this.state.todo.map((taskfromMap, index) =>(
-                    <Task key={index} item={taskfromMap} completed={taskfromMap} completedTaskFunction={this.CompletedTask}/>
+                    <Task key={index} item={taskfromMap} completed={taskfromMap} completedTaskFunction={this.CompletedTask} deleteCompleted={this.deleteCompleted}/>
                 ))}
                 </div>
 
@@ -95,6 +136,7 @@ class TodoForm extends React.Component {
             completed={this.state.completed}
             updateList ={this.updateList}
             handleChanges = {this.handleChanges}
+            deleteCompleted = {this.deleteCompleted}
             />
             </div>
         );
