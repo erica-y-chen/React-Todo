@@ -26,7 +26,7 @@ class App extends React.Component {
       task: "",
       completed: false,
       type: "",
-      types: ["Work", "Home", "Chores"]
+      types: ["Work", "Home", "Chores", "All"]
     };
   }
   handleChanges = event => {
@@ -81,23 +81,29 @@ class App extends React.Component {
     this.setState({ selectedType: type });
   };
 
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
   render() {
+    //  filters the todo on the state to determine which type to show
+    let filteredList = this.state.todo.filter(
+      eachTodo => eachTodo.type === this.state.selectedType
+    );
+    // defaults to show all if no type is selected and show all if 'All' is selected
+    if (!this.state.selectedType || this.state.selectedType === "All") {
+      filteredList = this.state.todo;
+    }
+
     return (
       <div class="body">
         <div class="menu">
           <h1>My tasks</h1>
           <KeyList
-            todo={this.state.todo}
+            todo={filteredList}
             handleType={this.handleType}
             types={this.state.types}
           />
         </div>
         <div class="content">
           <TodoForm
-            todo={this.state.todo}
+            todo={filteredList}
             task={this.state.task}
             completed={this.state.completed}
             CompletedTask={this.CompletedTask}
